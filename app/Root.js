@@ -11,10 +11,10 @@ const Root = () => {
         <nav>Goodie Bag</nav>
         <main>
           <h1>Welcome to the Goodie Bag!</h1>
-          <p>What a nice home page for your goodies!</p>
         </main>
         <Routes>
           <Route path="/candies" element={<AllCandy />} />
+          <Route path="/candies/:id" element={<Candy />} />
         </Routes>
       </div>
     </Router>

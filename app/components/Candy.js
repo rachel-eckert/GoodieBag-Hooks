@@ -1,29 +1,29 @@
-// import React, { useEffect } from "react";
-// import fetchSingleCandy from "../reducers/candySlice";
-// import { useSelector, useDispatch } from "react-redux";
-// import { useParams } from "react-router-dom";
-// const Candy = (props) => {
-//   const candy = useSelector((state) => state.singleCandy);
-//   console.log(candy);
-//   const dispatch = useDispatch();
-//   const params = useParams();
-//   useEffect(() => {
-//     dispatch(fetchSingleCandy(params.id));
-//   }, [dispatch]);
-//   // return (
-//   //   <li>
-//   //     <div>
-//   //       <a href="#">
-//   //         <img src={`/${candy.imageUrl}`} />
-//   //       </a>
-//   //     </div>
-//   //     <div>
-//   //       <p>{name}</p>
-//   //       <p>{description}</p>
-//   //       <p>{quantity}</p>
-//   //     </div>
-//   //   </li>
-//   // );
-// };
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchSingleCandy,
+  selectSingleCandy,
+} from "../reducers/singleCandySlice";
 
-// export default Candy;
+const Candy = () => {
+  const { id } = useParams();
+
+  const candy = useSelector(selectSingleCandy);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSingleCandy(id));
+  }, [dispatch]);
+
+  return (
+    <div>
+      <p>{candy.name}</p>
+      <p>{candy.description}</p>
+      <p>{candy.quantity}</p>
+      <img src={candy.imageUrl} />
+    </div>
+  );
+};
+
+export default Candy;

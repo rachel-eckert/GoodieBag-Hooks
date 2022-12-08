@@ -10,28 +10,13 @@ export const fetchCandies = createAsyncThunk("/candies", async () => {
   }
 });
 
-export const fetchSingleCandy = createAsyncThunk(
-  "/candies/fetchSingleCandy",
-  async (id) => {
-    try {
-      const { data } = await axios.get(`/api/candies/${id}`);
-      return data;
-    } catch (err) {
-      return err.message;
-    }
-  }
-);
-
 const candiesSlice = createSlice({
   name: "candies",
-  initialState: { allCandies: [] },
+  initialState: { allCandies: [], singleCandy: {} },
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchCandies.fulfilled, (state, action) => {
       return action.payload;
-    });
-    builder.addCase(fetchSingleCandy.fulfilled, (state, action) => {
-      state.candy = action.payload;
     });
   },
 });
